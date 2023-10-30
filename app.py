@@ -17,6 +17,7 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 from util.eggmodel import get_eggmodel
 from util.np_encoder import NpEncoder
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -82,11 +83,14 @@ def predict_egg_category():
 
     output_index = np.argmax(output)
     output_classname = classnames[output_index]
+    current_date = datetime.now().isoformat() 
 
     response = jsonify(json.loads(json.dumps({
         'classIndex': output_index,
         'className': output_classname,
-        'inferenceTimeSeconds': inference_duration
+        'inferenceTimeSeconds': inference_duration,
+        'img': base64String,
+        'time': current_date
     }, cls=NpEncoder)))
     response.status_code = 200
     return response
