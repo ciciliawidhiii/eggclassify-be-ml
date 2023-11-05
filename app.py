@@ -85,12 +85,15 @@ def predict_egg_category():
     output_classname = classnames[output_index]
     current_date = datetime.now().isoformat() 
 
+    
+
     response = jsonify(json.loads(json.dumps({
         'classIndex': output_index,
         'className': output_classname,
         'inferenceTimeSeconds': inference_duration,
         'img': base64String,
-        'time': current_date
+        'time': current_date,
+        'berat': request.json['berat']
     }, cls=NpEncoder)))
     response.status_code = 200
     return response
