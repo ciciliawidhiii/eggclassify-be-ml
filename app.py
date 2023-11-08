@@ -92,8 +92,8 @@ def predict_egg_category():
     output = eggmodel.run(None, {'input_1': image})
     inference_time_stop = time.time()
     inference_duration = inference_time_stop - inference_time_start
-    classnames = ['good',
-                  'bad',]
+    classnames = ['1',
+                  '2',]
 
     output_index = np.argmax(output)
     output_classname = classnames[output_index]
