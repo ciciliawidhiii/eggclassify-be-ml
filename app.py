@@ -49,17 +49,21 @@ def predict_egg_category():
             return response
 
 
-        pIndex = body['image'].find("</p>")
-        if pIndex != -1:
-            body['image'] = body['image'][pIndex+4:]
+        # pIndex = body['image'].find("</p>")
+        # if pIndex != -1:
+        #     body['image'] = body['image'][pIndex+4:]
 
-        pIndex = body['image'].find("?image-type=b64")
-        if pIndex != -1:
-            body['image'] = body['image'][pIndex+15:]
+        # pIndex = body['image'].find("?image-type=b64")
+        # if pIndex != -1:
+        #     body['image'] = body['image'][pIndex+15:]
 
-        pIndex = body['image'].find("}")
+        # pIndex = body['image'].find("}")
+        # if pIndex != -1:
+        #     body['image'] = body['image'][pIndex+1:]
+
+        pIndex = body['image'].find("/9j/")
         if pIndex != -1:
-            body['image'] = body['image'][pIndex+1:]
+            body['image'] = body['image'][pIndex:]
 
         base64String = body['image']
         print("img:",base64String)
